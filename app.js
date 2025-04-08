@@ -16,11 +16,13 @@ app.use(express.json());
 app.use(cookie());
 
 //to set view engine
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+
+const PORT = process.env.PORT || 3000;
 
 // to connect to MondoDB
 mongoose.connect(process.env.MONGO_URI)
-.then((result) => {app.listen(3000, '127.0.0.1', () => {
+.then((result) => {app.listen(PORT, '0.0.0.0', () => {
     console.log('Connected to Backend')
   });
 })
