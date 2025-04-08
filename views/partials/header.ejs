@@ -1,0 +1,27 @@
+<div class="navbar">
+  <header>
+    <img src="../public/assets/logo.png">
+    <h1> <a href="/">Getty</a></h1>
+    <h3><a href="/cakes">Visit Cakes>></a></h3>
+  </header>
+  <nav>
+    <ul>
+      <% if (user) { %>
+        <span> <%= user.email %></span>
+        <img src="/profile/images/<%= `${user._id}` %>" id="profile" style="width: 30px; height: 30px; border-radius: 100%; cursor: pointer;" />
+        <li><a href="/signout">Sign Out</a></li>
+      <% } else { %>
+        <li> <a href="/signup">Sign up</a></li>
+        <li> <a href="/signin">Sign in</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const profile = document.querySelector('#profile');
+
+  profile.addEventListener('click', () => {
+    location.assign('/profile/upload')
+  })
+</script>

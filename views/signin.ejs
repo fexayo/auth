@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-in</title>
+  <link rel="stylesheet" href="../public/style.css">
+</head>
+<body>
+  <%- include('partials/header')%>
+  <section>
+    <div class="container">
+      <div class="content">
+        <div class="head">
+          <h2>Sign in</h2>
+          <p>Kindly login to your account.</p>
+        </div>
+        <form action="">
+          <label for="email">Email</label>
+          <input type="text" name="email" required>
+          <div id="email-error"></div>
+          <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <img src="../public/assets/visibility.png" id="btn">
+          </div>
+          <div id="password-error"></div>
+          <div class="keep">
+            <input type="checkbox">
+            <p>Keep me logged in</p> 
+          </div>
+          <button type="submit" id="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container left">
+      <!-- <img src="../public/assets/iMac (M4) Wallpaper - Silver.PNG" id="left"> -->
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector('form');
+    let emailError = document.getElementById('email-error');
+    let passwordError = document.getElementById('password-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = form.email.value;
+      const password = form.password.value;
+      
+      try {
+        const res = await fetch('/signin', {
+          method: 'POST',
+          body: JSON.stringify({ email, password }),
+          headers: {'Content-Type': 'application/json'}
+        });
+        const data = await res.json();
+
+        if (data.errors) {
+          emailError.innerText = data.errors.email;
+          passwordError.innerText = data.errors.password;
+          // console.log(data.errors);
+        }
+
+        if (data.result) {
+          // location.href = '/';
+          location.assign('/');
+          // console.log(data.result);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    })
+
+   // to view password
+   let icon = document.getElementById('btn');
+    let input = document.getElementById('password');
+
+    icon.addEventListener('click', () => {
+      if (input.type === 'password') {
+        input.type = 'text'
+      }
+    })
+  </script>
+</body>
+</html>

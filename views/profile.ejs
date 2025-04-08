@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../public/style.css">
+</head>
+<body>
+  <%- include('partials/header')%>
+   <div class="index-content">
+      <h1>Profile Image Upload</h1>
+    </div>
+
+    <form>
+      <label for="img-input" id="view" style="background-color: #5668b2; border-radius: 5px; padding: 4px;">Choose a picture to upload</label>
+      <input id="img-input" type="file" name="avatar" required style="display: none;" />
+      <img src="" id="preview" alt="Preview Image" style="width: 120px; height: 120px; border-radius: 100%; display: none;" />
+      <button type="submit" id="submit" style="display: block; margin-top: 6px;">Submit </button>
+
+      <div id="status-message"></div>
+    </form>
+</body>
+</html>
+
+<script>
+  const id = "<%= user._id %>";
+
+  document.querySelector('#img-input').addEventListener('change', (event) => {
+    const file = event.target.files[0]; 
+
+    const loader = new FileReader();  // FileReader API
+   
+    loader.readAsDataURL(file); // convert file to base64
+    loader.onload = () => {
+      const img = document.querySelector('#preview');
+      // console.log(e);
+      // img.src = e.target.result;
+      img.src = loader.result;
+      img.style.display = 'block';
+    }
+  });
+  
+  document.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const file = e.target[0].files[0]
+
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    console.log(formData);
+
+    try {
+      const res = await fetch(`/profile/upload/${id}`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.text();
+       
+      document.querySelector('#status-message').textContent = data;
+
+      if (res.ok) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+</script>

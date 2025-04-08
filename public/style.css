@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: none;
+}
+body {
+  margin: 15px;
+  background-color: aliceblue;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: small;
+}
+
+.navbar header img {
+  width: 40px;
+  height: 20px;
+}
+
+.navbar nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.navbar nav ul a{
+  text-decoration: none; 
+  color: gray;
+  padding: 10px;
+}
+
+.navbar nav ul a:hover{
+  background-color: rgb(232, 236, 238);
+}
+
+.index-content {
+  text-align: center;
+  line-height: 50px;
+  padding: 25px;
+
+}
+
+section {
+  display: flex;
+  width: 1220px;
+  max-width: 90%;
+  height: 470px;
+  margin: 20px auto;
+  border: 1px solid rgb(227, 214, 214);
+  padding: 10px;
+  border-radius: 20px;
+  gap: 20px;
+}
+
+section .container {
+  padding: 15px;
+  width: 50%;
+}
+
+section .container.left {
+  background: url(../public/assets/iMac\ \(M4\)\ Wallpaper\ -\ Silver.PNG);
+  background-size: cover;
+  border-radius: 15px;
+}
+
+section .container .content .head {
+  margin-top: 30px;
+  padding: 10px;
+  line-height: 30px;
+}
+
+section .container .content form {
+  width: 400px;
+  padding: 5px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background: white;
+}
+
+section .container .content form label, input {
+  display: block;
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+section .container .content form input {
+  border: 0.8px solid gray;
+}
+
+
+section .container .content form #submit {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  margin: 5px 0;
+  display: block;
+  letter-spacing: 2px;
+  background-color: rgb(176, 184, 187);
+}
+
+section .container .content form #submit:hover {
+  background-color: rgb(178, 195, 201);
+  cursor: pointer;
+}
+
+section .container .content form .password {
+  position: relative;
+}
+
+section .container .content form .password img {
+  width: 30px;
+  height: 25px;
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+  cursor: pointer;
+}
+
+section .container .content form .keep {
+  display: flex;
+  padding: 15px 0px;
+  align-items: center;
+}
+
+section .container .content form .keep input {
+  width: 30px;
+  height: 15px;
+  cursor: pointer;
+}
