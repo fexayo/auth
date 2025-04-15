@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const cookie = require('cookie-parser');
 const { protectedRoute, currentUser } = require('./middleware/protectedRoute');
 const cors = require('cors');
+const rateLimiter = require('./middleware/rateLimiter');
 
 // to config env - it is used to store sensitive data
 require('dotenv').config();
@@ -15,6 +16,7 @@ app.use('/public', express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookie());
+app.use(rateLimiter);
 
 // const allowedOrigins = [
 //   'http://localhost:3000',
